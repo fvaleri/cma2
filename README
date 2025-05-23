@@ -1,0 +1,17 @@
+Examples from C Programming A Modern Approach 2nd edition and other resources.
+All testing was done on a x86_64 GNU/Linux system running GCC 15.1.1 or greater.
+
+# select example
+cd examples/hello
+
+# build all
+make
+
+# build self-contained example
+make hello
+
+# run binary file
+build/bin/hello
+
+# clean build artifacts
+make clean
