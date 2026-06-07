@@ -8,22 +8,21 @@ BUILD = build
 # find all .c file paths in the source directory
 SRCS = $(wildcard $(SRC)/*.c)
 # transform source file paths to target binaries
-# example: src/hello.c becomes hello
-TGTS = $(SRCS:$(SRC)/%.c=%)
+# example: src/hello.c becomes build/hello
+TGTS = $(SRCS:$(SRC)/%.c=$(BUILD)/%)
 
-all: setup $(TGTS)
+all: $(TGTS)
 
-setup:
-	mkdir -p $(BUILD)/bin
-
+# single-file build
+# @ suppresses command output
 # compile source files individually into binaries
-# % is a wildcard that matches any target name
 # $@ refers to the target name (binary file)
 # $< refers to the first prerequisite (the .c file)
-%: $(SRC)/%.c | setup
-	$(CC) $(CFLAGS) -o $(BUILD)/bin/$@ $< $(LDFLAGS) $(LDLIBS)
+$(BUILD)/%: $(SRC)/%.c
+	@mkdir -p $(BUILD)
+	$(CC) $(CFLAGS) -o $@ $< $(LDFLAGS) $(LDLIBS)
 
 .PHONY: all clean
 
 clean:
-	rm -rf $(BUILD)
+	@rm -rf $(BUILD)

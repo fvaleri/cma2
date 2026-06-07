@@ -1,8 +1,5 @@
 /*
- * Justify a file of text.
- * mkdir -p build/bin
- * cc -o build/bin/justify src/justify.c src/line.c src/word.c
- * build/bin/justify <quote
+ * cat quote.txt | build/bin/justify
  */
 #include "line.h"
 #include "word.h"

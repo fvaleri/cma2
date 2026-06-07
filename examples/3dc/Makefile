@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -O2 -Wall -W -std=c99
+CFLAGS = -O2 -Wall -W -std=c99 -lm `pkg-config --cflags sdl3` `pkg-config --libs sdl3`
 LDFLAGS =
 LDLIBS =
 SRC = src
@@ -15,7 +15,6 @@ all: $(TGTS)
 
 # single-file build
 # @ suppresses command output
-# compile source files individually into binaries
 # $@ refers to the target name (binary file)
 # $< refers to the first prerequisite (the .c file)
 $(BUILD)/%: $(SRC)/%.c
